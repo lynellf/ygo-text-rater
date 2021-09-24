@@ -1,28 +1,25 @@
-module Main = {
-  module BrainJS = {
-    type brain = {fromJSON: (~model: {.}) => unit}
-    module NeuralNetworkGPU = {
-      @module("brain.js") @scope("default") @new external make: brain = "NeuralNetworkGPU"
-    }
+  type brain = {fromJSON: (. {.}) => unit}
 
-    @module("brain.js") @scope("default")
-    external likely: (~input: array<int>, brain) => string = "NeuralNetworkGPU"
-  }
+   @module("brain.js") @new external neuralNetworkGPU: () => brain = "NeuralNetworkGPU"
+
+  @module("brain.js")
+  external likely: (~input: array<int>, brain) => string = "likely"
 
   @module external model: 'a = "ygo-text-model"
 
-  let net = BrainJS.NeuralNetworkGPU.make
+let rateText = (sentence) => {
+  let net = neuralNetworkGPU()
 
-  net.fromJSON(~model)
+  net.fromJSON(. model)
 
   let splitByPunctuation = str =>
     Js.String.splitByRe(%re("/[.!?,;:]/g"), str)->Belt.Array.keepMap(str => str)
 
   let encodePhrases = phrases => Belt.Array.map(phrases, phrase => Encoder.encode(phrase))
 
-  let ratePhrase = input => BrainJS.likely(~input, net)
+  let ratePhrase = input => likely(~input, net)
 
   let rateSentence = phrases => Belt.Array.map(phrases, ratePhrase)
 
-  let default = sentence => sentence->splitByPunctuation->encodePhrases->rateSentence
+  sentence->splitByPunctuation->encodePhrases->rateSentence
 }

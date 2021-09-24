@@ -1,6 +1,7 @@
 {
   "name": "ygo-text-rater",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "main": "js/src/Main.bs.js",
   "scripts": {
     "build": "rescript",
     "clean": "rescript clean -with-deps",
@@ -11,6 +12,7 @@
   ],
   "author": "",
   "license": "MIT",
+  "module": "esm",
   "dependencies": {
     "brain.js": "^2.0.0-beta.2",
     "natural": "^5.1.1",
