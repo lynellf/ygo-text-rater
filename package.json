@@ -1,5 +1,5 @@
 {
-  "name": "rescript-project-template",
+  "name": "ygo-text-rater",
   "version": "0.0.1",
   "scripts": {
     "build": "rescript",
@@ -12,6 +12,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "rescript": "*"
+    "brain.js": "^2.0.0-beta.2",
+    "natural": "^5.1.1",
+    "rescript": "*",
+    "ygo-text-model": "^1.0.0"
   }
 }
