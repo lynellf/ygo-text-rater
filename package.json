@@ -1,6 +1,6 @@
 {
   "name": "ygo-text-rater",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "js/src/Main.bs.js",
   "scripts": {
     "build": "rescript",
